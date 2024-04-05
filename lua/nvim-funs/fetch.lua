@@ -37,15 +37,20 @@ function M.popup()
     vim.api.nvim_buf_set_keymap(vim.api.nvim_win_get_buf(popup_win), "n", "q", "<Cmd>q<CR>", { noremap = true })
 
     --local popup_buf = vim.api.nvim_win_get_buf(popup_win)
-    vim.api.nvim_buf_attach(popup_buf, false, {
-        --on_detach = function()
-        --    vim.api.nvim_buf_detach(popup_buf)
-        --end,
-        --on_input = function(_, input)
-        on_input = function(input)
-            on_keypress(input)
-        end,
-    })
+    pcall(function()
+        vim.api.nvim_buf_attach(popup_buf, false, {
+            --on_detach = function()
+            --    vim.api.nvim_buf_detach(popup_buf)
+            --end,
+            --on_input = function(_, input)
+            --on_input = function(input)
+            on_input = function(input)
+                --local lines = vim.api.nvim_buf_get_lines(bufnr, 0, 1, false)
+                --local input = lines[1] or ""
+                on_keypress(input)
+            end,
+        })
+    end)
 end
 
 return M
