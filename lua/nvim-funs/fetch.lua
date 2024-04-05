@@ -13,7 +13,7 @@ function M.popup()
         border = "single",
     })
 
-    vim.api.nvim_buf_set_lines(popup_win, 0, 1, false, "Hello world")
+    vim.api.nvim_buf_set_lines(popup_win, 0, 1, false, {"Hello world"})
 
     local function on_keypress(key)
         if key == "q" or key == "<Esc>" then
